@@ -1,17 +1,29 @@
 package org.kurodev.input;
 
-import java.awt.AWTException;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
-import java.awt.Robot;
+import java.awt.*;
 
 public final class MouseCapture {
+
     private final Robot robot;
     private Point capturePoint;
 
     public MouseCapture() {
         this.robot = createRobot();
+    }
+
+    private static Point currentPointer() {
+        PointerInfo pointerInfo = MouseInfo.getPointerInfo();
+        return pointerInfo == null ? null : pointerInfo.getLocation();
+    }
+
+    private static Robot createRobot() {
+        try {
+            Robot created = new Robot();
+            created.setAutoDelay(0);
+            return created;
+        } catch (AWTException | SecurityException e) {
+            return null;
+        }
     }
 
     public MouseDelta captureDelta(boolean active) {
@@ -47,22 +59,10 @@ public final class MouseCapture {
         capturePoint = null;
     }
 
-    private static Point currentPointer() {
-        PointerInfo pointerInfo = MouseInfo.getPointerInfo();
-        return pointerInfo == null ? null : pointerInfo.getLocation();
-    }
-
-    private static Robot createRobot() {
-        try {
-            Robot created = new Robot();
-            created.setAutoDelay(0);
-            return created;
-        } catch (AWTException | SecurityException e) {
-            return null;
-        }
-    }
-
-    public record MouseDelta(int x, int y) {
+    public record MouseDelta(
+            int x,
+            int y
+    ) {
         public static final MouseDelta NONE = new MouseDelta(0, 0);
     }
 }
