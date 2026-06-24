@@ -1,5 +1,8 @@
-package org.kurodev.world;
+package org.kurodev.world.obj;
 
+import org.kurodev.jpixelgameengine.gfx.Pixel;
+import org.kurodev.world.WorldLine;
+import org.kurodev.world.WorldManager;
 import org.kurodev.world.shape.Shape;
 
 import java.util.Objects;
@@ -22,12 +25,24 @@ public final class DynamicObject extends AbstractWorldObject {
         this("object", WorldPosition.ORIGIN, shape);
     }
 
+    public DynamicObject(Shape shape, Pixel color) {
+        this("object", WorldPosition.ORIGIN, shape, color);
+    }
+
     public DynamicObject(WorldPosition position, Shape shape) {
         this("object", position, shape);
     }
 
+    public DynamicObject(WorldPosition position, Shape shape, Pixel color) {
+        this("object", position, shape, color);
+    }
+
     public DynamicObject(String name, WorldPosition position, Shape shape) {
-        super(name, shape);
+        this(name, position, shape, Pixel.WHITE);
+    }
+
+    public DynamicObject(String name, WorldPosition position, Shape shape, Pixel color) {
+        super(name, shape, color);
         transform.setPosition(Objects.requireNonNull(position, "position"));
     }
 

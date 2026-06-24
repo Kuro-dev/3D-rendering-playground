@@ -1,4 +1,6 @@
-package org.kurodev.world;
+package org.kurodev.world.obj;
+
+import org.kurodev.world.WorldManager;
 
 /**
  * Per-frame behavior attached to a world object.

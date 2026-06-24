@@ -1,5 +1,7 @@
 package org.kurodev.world;
 
+import org.kurodev.world.obj.WorldPosition;
+
 /**
  * Integer precision coordinate on the world grid.
  * <p>

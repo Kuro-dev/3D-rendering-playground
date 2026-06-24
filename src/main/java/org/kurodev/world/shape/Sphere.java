@@ -2,7 +2,7 @@ package org.kurodev.world.shape;
 
 import org.kurodev.world.WorldCoordinate;
 import org.kurodev.world.WorldLine;
-import org.kurodev.world.WorldPosition;
+import org.kurodev.world.obj.WorldPosition;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,5 +1,8 @@
-package org.kurodev.world;
+package org.kurodev.world.obj;
 
+import org.kurodev.jpixelgameengine.gfx.Pixel;
+import org.kurodev.world.WorldCoordinate;
+import org.kurodev.world.WorldLine;
 import org.kurodev.world.shape.Shape;
 
 import java.util.Objects;
@@ -19,12 +22,24 @@ public final class StaticObject extends AbstractWorldObject {
         this("object", WorldCoordinate.ORIGIN, shape);
     }
 
+    public StaticObject(Shape shape, Pixel color) {
+        this("object", WorldCoordinate.ORIGIN, shape, color);
+    }
+
     public StaticObject(WorldCoordinate coordinate, Shape shape) {
         this("object", coordinate, shape);
     }
 
+    public StaticObject(WorldCoordinate coordinate, Shape shape, Pixel color) {
+        this("object", coordinate, shape, color);
+    }
+
     public StaticObject(String name, WorldCoordinate coordinate, Shape shape) {
-        super(name, shape);
+        this(name, coordinate, shape, Pixel.WHITE);
+    }
+
+    public StaticObject(String name, WorldCoordinate coordinate, Shape shape, Pixel color) {
+        super(name, shape, color);
         this.coordinate = Objects.requireNonNull(coordinate, "coordinate");
     }
 

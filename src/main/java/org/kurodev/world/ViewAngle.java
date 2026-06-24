@@ -1,5 +1,7 @@
 package org.kurodev.world;
 
+import org.kurodev.world.obj.WorldPosition;
+
 /**
  * Camera orientation expressed as yaw and pitch.
  * <p>

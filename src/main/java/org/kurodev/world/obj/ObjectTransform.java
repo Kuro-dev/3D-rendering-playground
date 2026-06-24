@@ -1,4 +1,6 @@
-package org.kurodev.world;
+package org.kurodev.world.obj;
+
+import org.kurodev.world.WorldLine;
 
 /**
  * Local transform attached to a {@link DynamicObject}.

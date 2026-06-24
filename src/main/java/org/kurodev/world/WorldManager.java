@@ -1,13 +1,15 @@
 package org.kurodev.world;
 
+import org.kurodev.jpixelgameengine.gfx.Pixel;
 import org.kurodev.jpixelgameengine.impl.ffm.PixelGameEngine;
 import org.kurodev.jpixelgameengine.input.KeyBoardKey;
+import org.kurodev.world.obj.DynamicObject;
+import org.kurodev.world.obj.StaticObject;
+import org.kurodev.world.obj.WorldObject;
+import org.kurodev.world.obj.WorldPosition;
 import org.kurodev.world.shape.Shape;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Owns the camera and all world objects that should be updated or rendered.
@@ -49,6 +51,16 @@ public final class WorldManager {
         return Collections.unmodifiableList(objects);
     }
 
+    public Optional<WorldObject> getObject(String name) {
+        Objects.requireNonNull(name, "name");
+        for (WorldObject object : objects) {
+            if (object.name().equalsIgnoreCase(name)) {
+                return Optional.of(object);
+            }
+        }
+        return Optional.empty();
+    }
+
     /**
      * Adds an already constructed world object.
      * <p>
@@ -65,16 +77,40 @@ public final class WorldManager {
         return (StaticObject) addObject(new StaticObject(name, coordinate, shape));
     }
 
+    public StaticObject addStaticObject(String name, WorldCoordinate coordinate, Shape shape, Pixel color) {
+        return (StaticObject) addObject(new StaticObject(name, coordinate, shape, color));
+    }
+
     public StaticObject addStaticObject(WorldCoordinate coordinate, Shape shape) {
         return (StaticObject) addObject(new StaticObject(coordinate, shape));
+    }
+
+    public StaticObject addStaticObject(WorldCoordinate coordinate, Shape shape, Pixel color) {
+        return (StaticObject) addObject(new StaticObject(coordinate, shape, color));
+    }
+
+    public DynamicObject addDynamicObject(String name, WorldCoordinate position, Shape shape) {
+        return (DynamicObject) addObject(new DynamicObject(name, position.toPosition(), shape));
+    }
+
+    public DynamicObject addDynamicObject(String name, WorldCoordinate position, Shape shape, Pixel color) {
+        return (DynamicObject) addObject(new DynamicObject(name, position.toPosition(), shape, color));
     }
 
     public DynamicObject addDynamicObject(String name, WorldPosition position, Shape shape) {
         return (DynamicObject) addObject(new DynamicObject(name, position, shape));
     }
 
+    public DynamicObject addDynamicObject(String name, WorldPosition position, Shape shape, Pixel color) {
+        return (DynamicObject) addObject(new DynamicObject(name, position, shape, color));
+    }
+
     public DynamicObject addDynamicObject(WorldPosition position, Shape shape) {
         return (DynamicObject) addObject(new DynamicObject(position, shape));
+    }
+
+    public DynamicObject addDynamicObject(WorldPosition position, Shape shape, Pixel color) {
+        return (DynamicObject) addObject(new DynamicObject(position, shape, color));
     }
 
     public boolean removeObject(WorldObject object) {

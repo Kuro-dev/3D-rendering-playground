@@ -1,5 +1,7 @@
-package org.kurodev.world;
+package org.kurodev.world.obj;
 
+import org.kurodev.jpixelgameengine.gfx.Pixel;
+import org.kurodev.world.WorldLine;
 import org.kurodev.world.shape.Shape;
 
 import java.util.ArrayList;
@@ -10,12 +12,18 @@ import java.util.Objects;
 abstract class AbstractWorldObject implements WorldObject {
     private final String name;
     private final Shape shape;
+    private Pixel color;
     private boolean worldWireframeDirty = true;
     private List<WorldLine> cachedWorldWireframeLines = List.of();
 
     protected AbstractWorldObject(String name, Shape shape) {
+        this(name, shape, Pixel.WHITE);
+    }
+
+    protected AbstractWorldObject(String name, Shape shape, Pixel color) {
         this.name = Objects.requireNonNull(name, "name");
         this.shape = Objects.requireNonNull(shape, "shape");
+        this.color = Objects.requireNonNull(color, "color");
     }
 
     @Override
@@ -26,6 +34,14 @@ abstract class AbstractWorldObject implements WorldObject {
     @Override
     public final Shape shape() {
         return shape;
+    }
+
+    public final Pixel color() {
+        return color;
+    }
+
+    public final void setColor(Pixel color) {
+        this.color = Objects.requireNonNull(color, "color");
     }
 
     @Override
@@ -49,7 +65,7 @@ abstract class AbstractWorldObject implements WorldObject {
     }
 
     protected final void cacheWorldWireframeLines(List<WorldLine> worldLines) {
-        cachedWorldWireframeLines = Collections.unmodifiableList(new ArrayList<>(worldLines));
+        cachedWorldWireframeLines = List.copyOf(worldLines);
         worldWireframeDirty = false;
     }
 

@@ -1,5 +1,8 @@
-package org.kurodev.world;
+package org.kurodev.world.obj;
 
+import org.kurodev.jpixelgameengine.gfx.Pixel;
+import org.kurodev.world.WorldLine;
+import org.kurodev.world.WorldManager;
 import org.kurodev.world.shape.Shape;
 
 import java.util.List;
@@ -15,6 +18,10 @@ public interface WorldObject {
     String name();
 
     Shape shape();
+
+    Pixel color();
+
+    void setColor(Pixel color);
 
     List<WorldLine> worldWireframeLines();
 

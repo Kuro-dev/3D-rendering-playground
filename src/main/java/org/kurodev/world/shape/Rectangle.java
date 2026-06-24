@@ -2,7 +2,7 @@ package org.kurodev.world.shape;
 
 import org.kurodev.world.WorldCoordinate;
 import org.kurodev.world.WorldLine;
-import org.kurodev.world.WorldPosition;
+import org.kurodev.world.obj.WorldPosition;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,11 +16,11 @@ import java.util.Objects;
  * orientation this means X goes right, Y goes up, and Z goes deeper into the
  * scene.
  * <p>
- * When the rectangle is placed inside a {@code WorldObject}, the object's
- * coordinate is added to every corner. For example,
- * {@code new WorldObject(new WorldCoordinate(3, 0, 7), new Rectangle(2, 4, 1))}
- * puts the local origin corner at world coordinate {@code (3, 0, 7)} and the
- * opposite corner at {@code (5, 4, 8)}.
+ * When the rectangle is placed inside a world object, that object's coordinate
+ * is added to every corner. For example, a static object at
+ * {@code (3, 0, 7)} with {@code new Rectangle(2, 4, 1)} puts the local origin
+ * corner at world coordinate {@code (3, 0, 7)} and the opposite corner at
+ * {@code (5, 4, 8)}.
  */
 @SuppressWarnings("ClassCanBeRecord") //Cannot be a Record in the current form.
 public final class Rectangle implements Shape {
