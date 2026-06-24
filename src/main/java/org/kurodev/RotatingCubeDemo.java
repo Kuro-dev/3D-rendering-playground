@@ -38,7 +38,6 @@ public class RotatingCubeDemo extends BatchedPixelGameEngine {
         worldManager.addStaticObject("rectangle", new WorldCoordinate(-3, -1, 7), new Rectangle(3, 2, 5), Pixel.YELLOW);
         worldManager.addDynamicObject("pyramid", new WorldCoordinate(2, -1, 8), new Pyramid(2, 2, 5), Pixel.MAGENTA);
         worldManager.addStaticObject("sphere", new WorldCoordinate(0, 1, 10), new Sphere(1, 24), Pixel.GREEN);
-        worldManager.getObject("rectangle").ifPresent(o-> o.setColor(Pixel.CYAN));
         return true;
     }
 
@@ -54,7 +53,6 @@ public class RotatingCubeDemo extends BatchedPixelGameEngine {
         if (getKey(KeyBoardKey.TAB).isPressed()) {
             consoleShow(KeyBoardKey.TAB, true);
         }
-
         MouseCapture.MouseDelta mouseDelta = mouseCapture.captureDelta(!isConsoleShowing());
         worldManager.updatePlayerControlledCamera(this, mouseDelta.x(), mouseDelta.y(), delta);
         worldManager.update(delta);
