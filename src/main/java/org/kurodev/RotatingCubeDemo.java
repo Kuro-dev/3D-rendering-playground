@@ -37,7 +37,10 @@ public class RotatingCubeDemo extends BatchedPixelGameEngine {
 
         worldManager.addStaticObject("rectangle", new WorldCoordinate(-3, -1, 7), new Rectangle(3, 2, 5), Pixel.YELLOW);
         worldManager.addDynamicObject("pyramid", new WorldCoordinate(2, -1, 8), new Pyramid(2, 2, 5), Pixel.MAGENTA);
-        worldManager.addStaticObject("sphere", new WorldCoordinate(0, 1, 10), new Sphere(1, 24), Pixel.GREEN);
+        DynamicObject sphere = worldManager.addDynamicObject("sphere", new WorldCoordinate(0, 0, 10), new Sphere(1, 24), Pixel.GREEN);
+        sphere.setBehavior((object, world, deltaSeconds) -> {
+
+        });
         return true;
     }
 
